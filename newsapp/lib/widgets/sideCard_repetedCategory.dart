@@ -1,19 +1,30 @@
 // ignore_for_file: file_names, camel_case_types
 import 'package:flutter/material.dart';
 import 'package:newsapp/models/sidCardModel.dart';
+import 'package:newsapp/screens/sidcard_Screen.dart';
 
 class sidCardCategory extends StatelessWidget {
-  const sidCardCategory({super.key,required this.sideCardModele});
+  const sidCardCategory({super.key, required this.sideCardModele});
   final SideCardModele sideCardModele;
   @override
   Widget build(BuildContext context) {
-    return  Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8,horizontal: 8),
-      child: Container(
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) {
+              return sidCardScreen(q:sideCardModele.text ,);
+            },
+          ),
+        );
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+        child: Container(
           height: 120,
           width: 180,
           // color: Colors.orange,
-          decoration:  BoxDecoration(
+          decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(
               Radius.circular(10),
             ),
@@ -23,16 +34,14 @@ class sidCardCategory extends StatelessWidget {
               fit: BoxFit.fill,
             ),
           ),
-          child:  Center(
+          child: Center(
               child: Text(
             sideCardModele.text,
             style: const TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-                fontWeight: FontWeight.bold),
+                color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
           )),
         ),
+      ),
     );
-  
   }
 }
